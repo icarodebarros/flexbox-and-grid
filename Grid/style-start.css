@@ -1,0 +1,33 @@
+@import url(./style-base.css);
+
+/* VERSÃO SIMPLES DE COMO CHEGAR AO LAYOUT DESEJADO (SEM RESPONSIVIDADE) */
+
+.grid-col-span-2 { /* Itens do grid que contenham essa classe, irão ocupar duas colunas */
+  grid-column: span 2;  /* 'grid-column' é um atalho para 'grid-column-start' && 'grid-column-end' e geralmente usa-se valores como '1 / 3'.
+  O mesmo vale para 'grid-row'. Usar 'span X' é uma alternativa que ao invés de especificar exatamente as linhas de inicio e fim, é dito
+  para manter a atual posição, porem expandindo X espaços, seja linha ou coluna. Também é possível usar valores como '1 / span 2' especificando
+  a posição inicial. */
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: 1.5rem;
+
+  grid-template-columns: repeat(4, 1fr); /* Para a maioria dos casos só é necessário declarar o número de colunas, onde 
+  caso existam mais itens do que colunas, é criado automaticamente uma nova linha para alocar os itens. Só é necessário setar
+  as linhas manualmente em casos muito específicos. */
+
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  margin-inline: auto;
+}
+
+.testimonial:last-child { /* Forçando o ultimo item em uma posição específica. Os ítems que não são postos em posições específicas
+  simplesmente se adaptam que buscam a proxima posição disponível. */
+  grid-column-start: 4;
+  grid-row: 1 / 3; /* 'grid-row' é um atalho para 'grid-row-start' && 'grid-row-end' */
+  /* grid-row-start: 1; */
+  /* grid-row-end: 3; // ou 'span 2' também funcionaria */
+
+  background-color: rgb(255, 205, 205); /* Alterando a cor apenas para destacar o resultado do reposicionamento */
+}

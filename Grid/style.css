@@ -1,0 +1,91 @@
+@import url(./style-base.css);
+
+/* VERSÃO COMPLETA COM EXCELENTE RESPONSIVIDADE */
+
+/*
+.grid-col-span-2 { // Itens do grid que contenham essa classe, irão ocupar duas colunas
+  grid-column: span 2;  // 'grid-column' é um atalho para 'grid-column-start' && 'grid-column-end' e geralmente usa-se valores como '1 / 3'.
+  O mesmo vale para 'grid-row'. Usar 'span X' é uma alternativa que ao invés de especificar exatamente as linhas de inicio e fim, é dito
+  para manter a atual posição, porem expandindo X espaços, seja linha ou coluna. Também é possível usar valores como '1 / span 2' especificando
+  a posição inicial.
+} */
+
+.testimonial-grid {
+  display: grid;
+  gap: 1.5rem;
+
+  /* grid-template-columns: repeat(4, 1fr); // Para a maioria dos casos só é necessário declarar o número de colunas, onde 
+  caso existam mais itens do que colunas, é criado automaticamente uma nova linha para alocar os itens. Só é necessário setar
+  as linhas manualmente em casos muito específicos. */
+  grid-auto-columns: 1fr; /* Cada coluna (e linha) da grid pode ter larguras (e alturas) definidas automaticamente de acordo
+  com o conteúdo dos itens, mas também podem ser setados manualmente. Aqui todas as colunas terão largura igual (1fr).
+  O mesmo pode ser feito para com 'grid-auto-rows'.
+  */
+  grid-template-areas:
+   'one'
+   'two'
+   'three'
+   'four'
+   'five'; /* Cada área criada por padrão será uma linha, temos 5 áreas e 5 items, layout bom para telas pequenas. Para telas
+   maiores serão setado 'media querys' com ajustes de layout. OBS.: atenção à maneira que as áreas são escritas, não há vírgula,
+   cada área colocada abaixo representa nova linha, e colocada ao lado representa nova coluna. */
+
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  margin-inline: auto;
+}
+
+.testimonial:nth-child(1) { /* Aqui é feita a associação de cada elemento com uma das áreas criadas anteriormente */
+  grid-area: one; /* OBS.: sem aspas! */
+}
+.testimonial:nth-child(2) {
+  grid-area: two;
+}
+.testimonial:nth-child(3) {
+  grid-area: three;
+}
+.testimonial:nth-child(4) {
+  grid-area: four;
+}
+.testimonial:nth-child(5) {
+  grid-area: five;
+}
+
+/* Com a sintaxe de 'grid-template-areas' é facil ter várias maneiras de organizar os items dentre vários possíveis
+tamanhos de telas */
+@media screen and (min-width: 33em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one"
+      "two three"
+      "five five"
+      "four four";
+  }
+}
+
+@media screen and (min-width: 38em) {
+  .testimonial-grid {
+    grid-template-areas:
+     'one one'
+     'two five'
+     'three five'
+     'four four';
+  }
+}
+
+@media screen and (min-width: 54em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one two"
+      "five five five"
+      "three four four";
+  }
+}
+
+@media screen and (min-width: 75em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one two five"
+      "three four four five";
+  }
+}

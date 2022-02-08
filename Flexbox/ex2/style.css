@@ -1,0 +1,109 @@
+.columns {
+  display: flex;
+  /* flex-direction: column; /* (Valor default = row). Esse valor é aplicado a essa tag pai, ou seja, com o valor de 'row' significa
+  que a tag pai é um linha, logo os elementos filhos vão ser distribuídos lado a lado em colunas. Já com o valor de 'column'
+  significa que a tag pai será uma coluna e os filhos serão apresentados um sobre o outro, com em linhas. */
+  
+  align-items: center; /* Enquanto o 'justify-content' trabalha com o 'espaço que sobrou disponível' após os items, o 'align-items' trabalha
+  posicionando os ítems individualmente dentro de seu próprio espaço (desde que haja items com diferentes tamanhos, fazendo os menores terem espaço livre). 
+  Ex: se em uma linha existem 2 elementos, 1 grande tomando toda a altura disponível, e 1 pequeno, o valor 'flex-start' vai colocar 
+  esse item menor no topo, mantendo o espaço abaixo, se for 'flex-end' o item vai para o final e o espaço para cima, e 'center' vai 
+  centralizar verticalmente o item. (O mesmo vale se o mudar 'flex-diretion: row | column').
+  */
+
+  gap: 2rem;
+  border: 10px solid firebrick;
+}
+
+@media (min-width: 750px) { /* screen size >= 750px*/
+  .columns  {
+    flex-direction: row;
+  }
+}
+
+.columns > * {
+  /*
+    flex: 1;
+    // Essa notação é muito comum de se ver e vale algumas observações. A propriedade 'flex' normalmente recebe 3 valores,
+    já que é um comando resudido de:
+      flex-grow: 1; // (Valor default = 0)
+      flex-shrink: 1; // (Valor default = 1)
+      flex-basis: 0; // (Valor default = auto)
+
+    É importante saber que "flex: 1" omite os dois ultimos valores, isso significa que o felx-shrink se mantes com valor
+    padrão '1', porém o flex-basis NÃO! É anti-intuitivo, mas o flex-basis ao ser omitido muda o valor de 'auto' para '0',
+    fazendo o tamanho dos elementos perderem a proporcionalidade, e ficando todos do mesmo tamalho.
+  */
+
+  /*
+    flex-basis: 300px;
+    A hierarquia do flex-basis é 'maior' que as do flex-grow e shrink, então, colocar um valor fixo no flax-basis bloqueia
+    os elementos de crescerem ou reduzirem, mantendo-os contantes na largura informada.
+  */
+
+  /*
+    Vale notar que essas 3 propriedades flex-grow|shrink|basis são aplicadas aos filhos diretos da tag que contem o 'display: flex'
+  */
+
+  /* flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0; */
+  flex-basis: 100%; /* Outra solução bastante usada para criar colunas de mesma largura*/
+}
+
+.card:nth-child(2) {
+  background: pink;
+  align-self: flex-start; /* Diferente do 'align-items' que é adicionado na tag pai, o 'align-self' é adicionado na tag filho e
+  por isso possui maior hierarquia, sobrescrevendo o valor do 'align-items', mas tendo exatamente a mesma função/propriedades */
+}
+
+
+
+/* general styling ---------------------------- */
+
+.card {
+  padding: 1rem;
+  background: hsl(var(--clr-green));
+}
+
+.tags {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  font-size: 0.725rem;
+}
+
+.tag {
+  background: hsl(0 0% 100% / 0.4);
+  padding: 0.25rem 0.5rem;
+}
+
+:root {
+  --clr-orange: 7 100% 63%;
+  --clr-blue: 239 100% 50%;
+  --clr-green: 125 50% 50%;
+  --spacer: 2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: var(--spacer);
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  margin-bottom: 1em;
+  font-size: clamp(2rem, 5vw + 1rem, 4rem);
+  line-height: 1.1;
+  color: hsl(var(--clr-orange));
+  text-shadow: 0.05em 0.05em 0 hsl(0 0% 0% / 0.7);
+}

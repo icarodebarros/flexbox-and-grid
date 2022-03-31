@@ -11,6 +11,7 @@
     passa a funcionar verticalmente.
     */
     gap: 1rem;
+    height: 60px;
     
     margin: 0;
     padding: 0;
@@ -18,8 +19,13 @@
   }
   
   .nav-list li {
-    flex-grow: 0;
+    /* flex-grow: 0; */
     /* flex-shrink: 1; */
+    flex: 0 1 auto;
+  }
+
+  .nav-list li:first-child {
+    align-self: flex-end;
   }
   
   

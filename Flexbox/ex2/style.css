@@ -11,6 +11,8 @@
   centralizar verticalmente o item. (O mesmo vale se o mudar 'flex-diretion: row | column').
   */
 
+  /* flex-wrap: wrap; */
+
   gap: 2rem;
   border: 10px solid firebrick;
 }
@@ -25,12 +27,12 @@
   /*
     flex: 1;
     // Essa notação é muito comum de se ver e vale algumas observações. A propriedade 'flex' normalmente recebe 3 valores,
-    já que é um comando resudido de:
+    já que é um comando resumido de:
       flex-grow: 1; // (Valor default = 0)
       flex-shrink: 1; // (Valor default = 1)
       flex-basis: 0; // (Valor default = auto)
 
-    É importante saber que "flex: 1" omite os dois ultimos valores, isso significa que o felx-shrink se mantes com valor
+    É importante saber que "flex: 1" omite os dois ultimos valores, isso significa que o flex-shrink se mantem com valor
     padrão '1', porém o flex-basis NÃO! É anti-intuitivo, mas o flex-basis ao ser omitido muda o valor de 'auto' para '0',
     fazendo o tamanho dos elementos perderem a proporcionalidade, e ficando todos do mesmo tamalho.
   */
